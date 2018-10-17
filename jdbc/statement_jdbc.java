@@ -11,20 +11,19 @@ public class CreateDBJdbc {
     static final String PASSWORD = "123";
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        Connection connection = null;
-        Statement statement = null;
-
+        String PSQL = "String sql = "update developers set name=? , specialty=? where salary =?";
         try (Connection connection =DriverManager.getConnection(DATABASE_URL, USER, PASSWORD), 
-            Statement statement = connection.createStatement() ){
+            Statement statement = connection.createStatement(),
+            PreparedStatement preparedStatement =connection.prepareStatement(PSQL)){
             System.out.println("Registering JDBC driver...");
             Class.forName(JDBC_DRIVER);
              
-             \\Создание базы данных.
+            //Создание базы данных.
             String SQL = "CREATE DATABASE JDBC_DB";
             statement.executeUpdate(SQL);
             System.out.println("Database successfully created...");
             
-            \\Создание таблицы.
+            //Создание таблицы.
             SQL = "CREATE TABLE developers " +
                     "(id INTEGER not NULL, " +
                     " name VARCHAR(50), " +
@@ -42,7 +41,7 @@ public class CreateDBJdbc {
             ||----------------------------------------------------------------------||
             */
 
-            \\Запись данных в таблицу.
+            //Запись данных в таблицу.
             SQL = " INSERT INTO developers (name, specialty, salary) VALUES (shegda, java-developer,2000)";
             statement.executeUpdate(SQL);
                         /*
@@ -55,7 +54,7 @@ public class CreateDBJdbc {
             ||----------------------------------------------------------------------||
             */
             
-            \\Получение данных из таблицы.
+            //Получение данных из таблицы.
             String SQL = "SELECT * FROM developers";
             ResultSet resultSet = statement.executeQuery(SQL);
             while (resultSet.next()){
@@ -70,11 +69,38 @@ public class CreateDBJdbc {
                 System.out.println("===================\n");
             }
      
-             \\Удаление таблицы.
+            // Обновление\ изменение данных таблицы (строк)
+            SQL = "update developers set salary=2500 where name='shegda'";
+            nt rowsAffected  = statement.executeUpdate(SQL); 
+            
+            // удаление данных таблицы (строк)
+            SQL= "delete from developers where name='shegda'";
+            int rowsAffected    = statement.executeUpdate(sql);
+            
+            //Batch Updates (акамулирование запросов и их груповое выполнение)
+            statement.addBatch("update developers set name='John' where id=123");
+            statement.addBatch("update developers set name='Eric' where id=456");
+            statement.addBatch("update developers set name='May'  where id=789");
+            int[] recordsAffected = statement.executeBatch();
+                
+            //Batch Updates через PreparedStatement
+            preparedStatement.setString(1, "dagar");
+            preparedStatement.setString(2, "java-developer");
+            preparedStatement.setInt  (3, 1500);
+            preparedStatement.addBatch();
+            
+            preparedStatement.setString(1, "Stan");
+            preparedStatement.setString(2, "java-developer");
+            preparedStatement.setLong  (3, 4000);
+            preparedStatement.addBatch();
+            
+            int[] affectedRecords = preparedStatement.executeBatch();
+            
+            //Удаление таблицы.
             SQL = "DROP TABLE developers";
             statement.executeUpdate(SQL);
             
-            \\Удаление базы данных.
+            //Удаление базы данных.
             SQL = "DROP DATABASE PROSELYTE_JDBC_DB";
             statement.executeUpdate(SQL);
             
