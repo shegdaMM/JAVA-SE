@@ -32,19 +32,28 @@ public class CreateDBJdbc {
                     " salary INTEGER not NULL, " +
                     " PRIMARY KEY (id))";
             statement.executeUpdate(SQL);
-            
-            \\Удаление таблицы.
-            SQL = "DROP TABLE developers";
-            statement.executeUpdate(SQL);
-            
+            /*
+            ||----------------------------------------------------------------------||
+            ||    id        |      name       |      specialty     |    salary      ||
+            ||----------------------------------------------------------------------||
+            ||              |                 |                    |                ||
+            ||----------------------------------------------------------------------||
+            ||              |                 |                    |                ||
+            ||----------------------------------------------------------------------||
+            */
+
             \\Запись данных в таблицу.
-            SQL = "CREATE TABLE developers " +
-                    "(id INTEGER not NULL, " +
-                    " name VARCHAR(50), " +
-                    " specialty VARCHAR (50), " +
-                    " salary INTEGER not NULL, " +
-                    " PRIMARY KEY (id))";
+            SQL = " INSERT INTO developers (name, specialty, salary) VALUES (shegda, java-developer,2000)";
             statement.executeUpdate(SQL);
+                        /*
+            ||----------------------------------------------------------------------||
+            ||    id        |      name       |      specialty     |    salary      ||
+            ||----------------------------------------------------------------------||
+            ||      1       |       shegda    |    java-developer  |    2000        ||
+            ||----------------------------------------------------------------------||
+            ||              |                 |                    |                ||
+            ||----------------------------------------------------------------------||
+            */
             
             \\Получение данных из таблицы.
             String SQL = "SELECT * FROM developers";
@@ -61,6 +70,10 @@ public class CreateDBJdbc {
                 System.out.println("===================\n");
             }
      
+             \\Удаление таблицы.
+            SQL = "DROP TABLE developers";
+            statement.executeUpdate(SQL);
+            
             \\Удаление базы данных.
             SQL = "DROP DATABASE PROSELYTE_JDBC_DB";
             statement.executeUpdate(SQL);
