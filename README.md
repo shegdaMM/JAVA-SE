@@ -8,7 +8,7 @@ all examples codes in wiki
 ## **_[JAVA SE API DISCRIPTION](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-SE-API-DISCRIPTION)_**
 ## **_[javadoc](https://github.com/shegdaMM/JAVA-SE/wiki/documentation)_**
 ## [java compiler](https://github.com/shegdaMM/JAVA-SE/issues/4)
-## [java run](https://github.com/shegdaMM/JAVA-SE/issues/4)
+## [java run](https://github.com/shegdaMM/JAVA-SE/issues/5)
 ***
 ### java.lang.*
 1. **[JAVA CORE -> java.lang.Number*](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----java.lang.Number*)**
