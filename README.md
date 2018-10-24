@@ -30,7 +30,7 @@ all examples codes in wiki
 1. **[JAVA CORE -> java.io.*](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----java.io.*)**
 1. **[JAVA CORE -> java.nio.*](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----java.nio.*)**
 ### bigg integer & desimal
-1. **[JAVA CORE -> java.math.*](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----java.math.*  BigDecimal / BigInteger)**
+1. **[JAVA CORE -> java.math.* BigDecimal / BigInteger](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----java.math.*)**
 ### (read <-- & --> write) to networks  //streams | buffers
 1. **[JAVA CORE -> java.net.*](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----java.net.*)**
 1. **[JAVA CORE -> javax.net.*](https://github.com/shegdaMM/JAVA-SE/wiki/JAVA-CORE----javax.net.*)**
