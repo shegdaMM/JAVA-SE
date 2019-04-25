@@ -1,0 +1,4 @@
+/* byte uncoding to some charset standart */
+InputStreamReader isr=new InputStreamReader(inputStream, charset); 
+//inputStream - input io, chareser is object CharSet in nio(decode/encode standart util)
+
