@@ -533,14 +533,70 @@ private static void configureLogging() {
     
 }
 /*
+Напишите программу, читающую текст из System.in и выводящую в System.out сумму всех встреченных в тексте вещественных чисел с точностью до шестого знака после запятой. Числом считается последовательность символов, отделенная от окружающего текста пробелами или переводами строк и успешно разбираемая методом Double.parseDouble.
 
+На этот раз вам надо написать программу полностью, т.е. объявить класс (с именем Main — таково ограничение проверяющей системы), метод main, прописать все import'ы.
+
+Sample Input 1:
+
+1 2 3
+Sample Output 1:
+
+6.000000
+Sample Input 2:
+
+a1 b2 c3
+Sample Output 2:
+
+0.000000
+Sample Input 3:
+
+-1e3
+18 .111 11bbb
+Sample Output 3:
+
+-981.889000
 */
-
-
+import java.util.*;
+import java.util.regex.*;
+import java.util.stream.*;
+public class Main {
+    public static void main(String[] args)
+    {
+       Scanner sc=new Scanner(System.in);
+	   List<String> list=new ArrayList<String>();
+       while(sc.hasNext())
+       {
+          list.add(sc.next()); 
+       } 
+	   Double sum=list.stream()
+			.filter((s)->s.matches("[+-]?([0-9]*[.e])?[0-9]+$"))
+			.mapToDouble((x)->Double.valueOf(x))
+			.sum();
+	   
+       System.out.println(String.format("%,6f",sum));
+    }
+}
 /*
+Реализуйте метод, который зачитает данные из InputStream и преобразует их в строку, используя заданную кодировку.
 
+Пример
+
+InputStream последовательно возвращает четыре байта: 48 49 50 51.
+
+Метод, вызванный для такого InputStream и кодировки ASCII, должен вернуть строку "0123".
 */
-
+public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
+    StringBuilder sb=new StringBuilder();
+    InputStreamReader isr=new InputStreamReader(inputStream, charset);
+    int temp;
+    while((temp=isr.read())!=-1)
+    {
+        sb.append((char)temp);
+    }
+    return sb.toString();
+    
+}
 
 /*
 
