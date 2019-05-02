@@ -753,11 +753,52 @@ public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extend
     return symDiff;
 }
 
-
-
 /*
-
+Реализуйте generic-класс Pair, похожий на Optional, но содержащий пару элементов разных типов и не запрещающий элементам принимать значение null.
+Реализуйте методы getFirst(), getSecond(), equals() и hashCode(), а также статический фабричный метод of(). Конструктор должен быть закрытым (private).
+С корректно реализованным классом Pair должен компилироваться и успешно работать следующий код:
+Pair<Integer, String> pair = Pair.of(1, "hello");
+Integer i = pair.getFirst(); // 1
+String s = pair.getSecond(); // "hello"
+Pair<Integer, String> pair2 = Pair.of(1, "hello");
+boolean mustBeTrue = pair.equals(pair2); // true!
+boolean mustAlsoBeTrue = pair.hashCode() == pair2.hashCode(); // true!
+Пожалуйста, не меняйте модификатор доступа класса Pair. Для корректной проверки класс должен иметь пакетную видимость.
 */
+class Pair<F, L> {
+
+    private F f;
+    private L l;
+
+    private Pair(F f, L l) {
+        this.f = f;
+        this.l = l;
+    }
+
+    public F getFirst() { return f; }
+    public L getSecond() { return l; }
+    public static <F, L> Pair<F, L> of(F f, L l) { return new Pair<>(f, l); }
+
+    @Override
+    public int hashCode() {
+        int result = 1;
+        if (f != null) result = 31 * result + f.hashCode();
+        if (l != null) result = 31 * result + l.hashCode();
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Pair other = (Pair) obj;
+        if ( (f != null && !f.equals(other.f)) || (other.f != null && !other.f.equals(f)) ) return false;
+        if ( (l != null && !l.equals(other.l)) || (other.l != null && !other.l.equals(l)) ) return false;
+
+        return true;
+    }
+}
 
 /*
 
