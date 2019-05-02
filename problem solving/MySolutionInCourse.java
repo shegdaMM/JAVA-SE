@@ -683,13 +683,75 @@ public class Main {
     }
 }
 /*
-
+Напишите программу, которая прочитает из System.in последовательность целых чисел, разделенных пробелами, затем удалит из них все числа, стоящие на четных позициях, и затем выведет получившуюся последовательность в обратном порядке в System.out.
+Все числа влезают в int. Позиции чисел в последовательности нумеруются с нуля.
+В этом задании надо написать программу целиком, включая import'ы, декларацию класса Main и метода main.
 */
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+    public static void main(String[] args)
+    {
+    Scanner sc=new Scanner(System.in);
+    int[] list=new int[1000000];
+    StringBuilder sb=new StringBuilder();
+    int n=0;
+    while(sc.hasNext())
+    {
+        int temp=sc.nextInt(); 
+        if(temp%2==0) { list[n]=temp; n++; }
+    }
+    for(int i=n-1; i>=0; i--)   sb.append(list[i]+ " ");
+    if(sb.length()!=0)
+    {
+        sb.deleteCharAt(sb.length()-1);
+        System.out.println(sb.toString()); 
+    }
+    else System.out.println();
+    }
+}
+
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+    public static void main(String[] args)
+    {
+    Scanner sc=new Scanner(System.in); 
+    List<Integer> list=new ArrayList<Integer>();
+    while(sc.hasNext())
+    {
+        int temp=sc.nextInt(); 
+        if((temp%2==0)&&(temp!=0)) list.add(temp); 
+    }
+    Collections.reverse(list);
+    for(int i=0; i<list.size(); i++){
+            System.out.print(list.get(i));
+            if(i!=list.size()) System.out.print(" "); }
+    }
+}
 
 
 /*
+Реализуйте метод, вычисляющий симметрическую разность двух множеств.
 
+Метод должен возвращать результат в виде нового множества. Изменять переданные в него множества не допускается.
+
+Пример
+
+Симметрическая разность множеств {1, 2, 3} и {0, 1, 2} равна {0, 3}.
 */
+public static <T> Set<T> symmetricDifference(Set<? extends T> set1, Set<? extends T> set2) {
+    Set<T> symDiff = new HashSet<T>(set1);//new copy of set1
+    symDiff.addAll(set2); // set2 to copy
+    Set<T> tmp = new HashSet<T>(set1);// temp set with set1 elements
+    tmp.retainAll(set2); // only repeating elements in temp
+    symDiff.removeAll(tmp); //delete all repeating elements
+    return symDiff;
+}
 
 
 
